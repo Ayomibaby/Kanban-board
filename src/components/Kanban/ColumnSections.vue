@@ -6,7 +6,7 @@
           <h2>0</h2>
           <input type="text" class="name-input" placeholder="Name" />
         </div>
-        <div class="delete">Delete</div>
+        <div class="delete"><font-awesome-icon icon="fa-solid fa-trash" /> </div>
       </div>
     </div>
     <div class="cards">
@@ -14,7 +14,10 @@
     </div>
     <div class="outer-task">
     <div class="tasks">
-      <input type="text" placeholder="add Task" class="name-input" />
+      <div class="add-btn">
+      <font-awesome-icon icon="fa-solid fa-circle-plus" />
+      <h3>Add task</h3>
+    </div>
       <p>clear</p>
     </div>
 </div>
@@ -23,8 +26,16 @@
 
 <script>
 import taskCards from './taskCards.vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrash, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faTrash, faCirclePlus);
+
+
 export default {
-    components:{taskCards},
+  // props:['FaFlag'],
+    components:{taskCards, FontAwesomeIcon,},
   name: "ColumnSections",
 };
 </script>
@@ -52,10 +63,10 @@ padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
+  width: 90%;
 }
 .delete {
-  width: 20%;
+  width: 10%;
 }
 .delete,
 .title {
@@ -93,11 +104,16 @@ padding: 10px;
 .tasks{
     display: flex ;
    
-    /* justify-content: space-between;   */
+    justify-content: space-between;  
       align-items: center;
-     column-gap: 30px;
+     /* column-gap: 30px; */
      padding: 10px;
     
      
+}
+.add-btn{
+  display: flex;
+  column-gap: 10px;
+  align-items: center;
 }
 </style>
