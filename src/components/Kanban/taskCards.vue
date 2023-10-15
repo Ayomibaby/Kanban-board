@@ -1,5 +1,5 @@
 <template>
-  <section class="card-wrapper">
+  <section class="card-wrapper" draggable="true">
     <textarea placeholder="Enter Task"></textarea>
     <div class="delete">
     <font-awesome-icon icon="fa-solid fa-trash" /> 
@@ -44,6 +44,7 @@ textarea::placeholder{
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+    margin-bottom: 20px;
 }
 .delete{
  width: 10%;

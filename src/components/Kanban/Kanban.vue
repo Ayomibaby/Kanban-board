@@ -1,18 +1,31 @@
 
 <template>
 <section class="column-wrapper">
+  <div class="random-testing">
 <ColumnSections/>
+</div>
+<div  class="random-testing">
 <ColumnSections/>
+</div>
+<div  class="random-testing">
 <ColumnSections/>
+</div>
+<div  class="random-testing">
+<addColum/>
+</div>
+
+
 </section>
   </template>
   
   <script >
   import ColumnSections from './ColumnSections.vue';
+  import addColum from './addColumn.vue'
   export default {
     name: "kanBan",
     components:{
-        ColumnSections
+        ColumnSections,
+        addColum
     }
   }
   </script>
@@ -20,9 +33,14 @@
   <style scoped>
  .column-wrapper{
     display: flex;
-    justify-content: space-between;
+   
+    column-gap: 20px;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap
  }
   
+
  /* #ADD8E6 -- light blue */
    
  

@@ -1,5 +1,6 @@
 <template>
-  <section class="columnWrapper">
+  <section class="content-wrap">
+ 
     <div>
       <div class="title">
         <div class="title-identity">
@@ -10,6 +11,9 @@
       </div>
     </div>
     <div class="cards">
+        <taskCards/>
+        <taskCards/>
+        <taskCards/>
         <taskCards/>
     </div>
     <div class="outer-task">
@@ -22,6 +26,7 @@
     </div>
 </div>
   </section>
+
 </template>
 
 <script>
@@ -41,8 +46,8 @@ export default {
 </script>
 
 <style scoped>
-.columnWrapper {
-  width: 30%;
+.content-wrap{
+  width: 23rem;
   height: 90vh;
   background-color: #161c22;
   border-radius: 20px;
@@ -50,6 +55,11 @@ position: relative;
 color:white;
 padding: 10px;
   /* border: 1px solid #494848; */
+ 
+}
+.cards{
+  overflow-y: scroll;
+  height: 60vh;
 }
 .title {
   display: flex;
