@@ -28,7 +28,7 @@ export default {
       columms: [
         {
           id: 1,
-          tasks: [],
+          tasks: [{id:1, taskname:""}],
           noOFTasks: 0,
           colummsTitle: "",
         },

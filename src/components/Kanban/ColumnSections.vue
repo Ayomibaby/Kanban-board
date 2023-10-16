@@ -1,80 +1,76 @@
 <template>
   <section class="content-wrap" v-on:ondrop="drop" v-on:dragover="allowDrop">
- 
     <div>
       <div class="title">
         <div class="title-identity">
           <h2>0</h2>
           <input type="text" class="name-input" placeholder="Name" />
         </div>
-        <div class="delete" @click="deleteColumn"><font-awesome-icon icon="fa-solid fa-trash" /> </div>
+        <div class="delete" @click="deleteColumn">
+          <font-awesome-icon icon="fa-solid fa-trash" />
+        </div>
       </div>
     </div>
     <div class="cards">
-        <!-- <taskCards/>
-        <taskCards/>
-        <taskCards/>
-        <taskCards/> -->
+      <taskCards v-for="ta in data.tasks" :details="ta" />
     </div>
     <div class="outer-task">
-    <div class="tasks">
-      <div class="add-btn">
-      <font-awesome-icon icon="fa-solid fa-circle-plus" />
-      <h3>Add task</h3>
+      <div class="tasks">
+        <div class="add-btn" @click="addtask">
+          <font-awesome-icon icon="fa-solid fa-circle-plus" />
+          <h3>Add task</h3>
+        </div>
+        <p>clear</p>
+      </div>
     </div>
-      <p>clear</p>
-    </div>
-</div>
   </section>
-
 </template>
 
 <script>
-import taskCards from './taskCards.vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrash, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import taskCards from "./taskCards.vue";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faTrash, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faTrash, faCirclePlus);
 
-
 export default {
-  props:['data', 'fulldata'],
-    components:{taskCards, FontAwesomeIcon,},
+  props: ["data", "fulldata"],
+  components: { taskCards, FontAwesomeIcon },
   name: "ColumnSections",
-  methods:{
+  methods: {
     allowDrop(ev) {
-  ev.preventDefault();
-},
+      ev.preventDefault();
+    },
     drop(ev) {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-},
-deleteColumn(){
-    const id = this.data.id
-    this.$emit('deleteColumn', id)
-
-  
-  }
-  }, 
-
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      ev.target.appendChild(document.getElementById(data));
+    },
+    deleteColumn() {
+      const id = this.data.id;
+      this.$emit("deleteColumn", id);
+    },
+    addtask() {
+      const taskid = this.data.tasks.length + 1;
+      this.data.tasks.push({id: taskid, taskname:""})
+    },
+  },
 };
 </script>
 
 <style scoped>
-.content-wrap{
+.content-wrap {
   width: 23rem;
   height: 90vh;
   background-color: #161c22;
   border-radius: 20px;
-position: relative;
-color:white;
-padding: 10px;
+  position: relative;
+  color: white;
+  padding: 10px;
   /* border: 1px solid #494848; */
- 
 }
-.cards{
+.cards {
   overflow-y: scroll;
   height: 60vh;
 }
@@ -108,10 +104,8 @@ padding: 10px;
   font-weight: 600;
   color: white;
   background: black;
-
 }
 .name-input:focus {
-  
   outline: none;
 }
 
@@ -120,25 +114,23 @@ padding: 10px;
   font-weight: 600;
   color: white;
 }
-.outer-task{
-    position: absolute;
-     bottom:0;
-     background: #000;
-     border-radius: 10px;
-     width: 95%;
-     margin: 10px auto;
+.outer-task {
+  position: absolute;
+  bottom: 0;
+  background: #000;
+  border-radius: 10px;
+  width: 95%;
+  margin: 10px auto;
 }
-.tasks{
-    display: flex ;
-   
-    justify-content: space-between;  
-      align-items: center;
-     /* column-gap: 30px; */
-     padding: 10px;
-    
-     
+.tasks {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  /* column-gap: 30px; */
+  padding: 10px;
 }
-.add-btn{
+.add-btn {
   display: flex;
   column-gap: 10px;
   align-items: center;
