@@ -1,5 +1,5 @@
 <template>
-  <section class="content-wrap">
+  <section class="content-wrap" v-on:ondrop="drop" v-on:dragover="allowDrop">
  
     <div>
       <div class="title">
@@ -11,10 +11,10 @@
       </div>
     </div>
     <div class="cards">
+        <!-- <taskCards/>
         <taskCards/>
         <taskCards/>
-        <taskCards/>
-        <taskCards/>
+        <taskCards/> -->
     </div>
     <div class="outer-task">
     <div class="tasks">
@@ -42,6 +42,16 @@ export default {
   // props:['FaFlag'],
     components:{taskCards, FontAwesomeIcon,},
   name: "ColumnSections",
+  methods:{
+    allowDrop(ev) {
+  ev.preventDefault();
+},
+    drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+  }
 };
 </script>
 

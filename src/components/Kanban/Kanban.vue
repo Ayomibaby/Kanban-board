@@ -1,17 +1,13 @@
 
 <template>
 <section class="column-wrapper">
-  <div class="random-testing">
-<ColumnSections/>
+
+  <div class="random-testing" v-for="col in columms">
+<ColumnSections :data="col"/>
 </div>
-<div  class="random-testing">
-<ColumnSections/>
-</div>
-<div  class="random-testing">
-<ColumnSections/>
-</div>
-<div  class="random-testing">
-<addColum/>
+
+<div class="random-testing" >
+<addColum :currentcol="columms"/>
 </div>
 
 
@@ -26,6 +22,18 @@
     components:{
         ColumnSections,
         addColum
+    }, 
+    data(){
+      return{
+        columms:[
+          {
+           
+            tasks:[],
+            noOFTasks:0,
+            colummsTitle:'',
+        }
+      ]
+      }
     }
   }
   </script>
