@@ -1,6 +1,6 @@
 <template>
-  <section class="new-column">
-    <div class="inner-wrapper" @click="addNewCol">
+  <section class="new-column" @click="addNewCol">
+    <div class="inner-wrapper" >
       <font-awesome-icon icon="fa-solid fa-circle-plus" />
       <p>Add column</p>
     </div>

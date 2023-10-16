@@ -7,7 +7,7 @@
           <h2>0</h2>
           <input type="text" class="name-input" placeholder="Name" />
         </div>
-        <div class="delete"><font-awesome-icon icon="fa-solid fa-trash" /> </div>
+        <div class="delete" @click="deleteColumn"><font-awesome-icon icon="fa-solid fa-trash" /> </div>
       </div>
     </div>
     <div class="cards">
@@ -39,7 +39,7 @@ library.add(faTrash, faCirclePlus);
 
 
 export default {
-  // props:['FaFlag'],
+  props:['data', 'fulldata'],
     components:{taskCards, FontAwesomeIcon,},
   name: "ColumnSections",
   methods:{
@@ -50,8 +50,15 @@ export default {
   ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
   ev.target.appendChild(document.getElementById(data));
-}
+},
+deleteColumn(){
+    const id = this.data.id
+    this.$emit('deleteColumn', id)
+
+  
   }
+  }, 
+
 };
 </script>
 
