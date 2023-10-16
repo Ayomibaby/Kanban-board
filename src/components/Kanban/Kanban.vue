@@ -6,6 +6,7 @@
         :fulldata="columms"
         @deleteColumn="handleDelete"
         @passDelete="taskDelete"
+        @clearTasks="handleClear"
       />
     </div>
 
@@ -36,6 +37,12 @@ export default {
       ],
     };
   },
+  mounted(){
+    const sumforeach = (col) =>{
+      col.noOFTasks = col.tasks.length
+    }
+this.columms.forEach(sumforeach)
+  },
   methods: {
     handleDelete(id) {
       const colbyid = (col) => {
@@ -43,6 +50,7 @@ export default {
       };
       const newcol = this.columms.filter(colbyid);
       this.columms = newcol;
+
     },
 
     taskDelete(id, colId) {
@@ -57,9 +65,19 @@ export default {
 
       const filteredTasks = findCol.tasks.filter(taskbyid);
 
-      return (findCol.tasks = filteredTasks);
-    },
+      findCol.noOFTasks = filteredTasks.length;
+  
+     findCol.tasks = filteredTasks
 
+    },
+    handleClear(colId){
+      const findfunc = (col) => {
+        return col.id == colId
+      };
+      const findCol = this.columms.find(findfunc);
+      findCol.noOFTasks = 0
+      findCol.tasks = []
+    }
   },
 };
 </script>

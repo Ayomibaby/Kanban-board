@@ -3,7 +3,7 @@
     <div>
       <div class="title">
         <div class="title-identity">
-          <h2>0</h2>
+          <h2>{{ data.noOFTasks }}</h2>
           <input type="text" class="name-input" placeholder="Name" />
         </div>
         <div class="delete" @click="deleteColumn">
@@ -20,7 +20,7 @@
           <font-awesome-icon icon="fa-solid fa-circle-plus" />
           <h3>Add task</h3>
         </div>
-        <p>clear</p>
+        <p @click="clearTasks">clear</p>
       </div>
     </div>
   </section>
@@ -54,10 +54,15 @@ export default {
     addtask() {
       const taskid = this.data.tasks.length + 1;
       this.data.tasks.push({id: taskid, taskname:""})
+      this.data.noOFTasks = this.data.tasks.length
     },
     passDelete(id){
       const colId = this.data.id
      this.$emit("passDelete", id, colId) 
+    }, 
+    clearTasks(){
+      const colId = this.data.id
+      this.$emit("clearTasks", colId)
     }
   },
 };
