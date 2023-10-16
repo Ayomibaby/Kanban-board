@@ -27,14 +27,23 @@
       return{
         columms:[
           {
-           
+           id:1,
             tasks:[],
             noOFTasks:0,
             colummsTitle:'',
         }
       ]
       }
-    }
+    }, 
+    watch:{
+      columms(newcols, oldcols){
+        console.log(this.columms)
+       console.log(newcols)
+      }
+    }, 
+    // mounted(){
+    //   console.log(this.columms)
+    // }
   }
   </script>
   

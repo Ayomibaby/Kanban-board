@@ -15,20 +15,24 @@ import { faTrash, faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 library.add(faTrash, faCirclePlus);
 export default {
   components: { FontAwesomeIcon },
-  props:['currentcol'],
+  props: ["currentcol"],
   name: "addColumn",
-  methods:{
-    addNewCol(){
+  computed: {
+    getid() {
+      return this.currentcol.length + 1;
+    },
+  },
+  methods: {
+    addNewCol() {
       this.currentcol.push({
-        
-           
-            tasks:[],
-            noOFTasks:0,
-            colummsTitle:'',
-        
-      })
-    }
-  }
+        id: this.getid,
+        tasks: [],
+        noOFTasks: 0,
+        colummsTitle: "",
+      });
+      console.log(this.currentcol);
+    },
+  },
 };
 </script>
 
