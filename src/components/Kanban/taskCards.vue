@@ -1,7 +1,7 @@
 <template>
   <section id="task" class="card-wrapper" draggable="true" v-on:dragstart="drag">
     <textarea placeholder="Enter Task"></textarea>
-    <div class="delete">
+    <div class="delete" @click="deleteTask">
     <font-awesome-icon icon="fa-solid fa-trash" /> 
   </div>
   </section>
@@ -17,9 +17,15 @@ library.add(faTrash);
 export default {
   components:{FontAwesomeIcon},
     name:"task-cards", 
+    props:['details'],
     methods:{
       drag(ev){
         ev.dataTransfer.setData("text", ev.target.id);
+      }, 
+      deleteTask(){
+        const id = this.details.id
+
+        this.$emit('deleteTask', id)
       }
     }
 }

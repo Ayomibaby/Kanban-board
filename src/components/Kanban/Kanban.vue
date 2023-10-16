@@ -5,6 +5,7 @@
         :data="col"
         :fulldata="columms"
         @deleteColumn="handleDelete"
+        @passDelete="taskDelete"
       />
     </div>
 
@@ -28,7 +29,7 @@ export default {
       columms: [
         {
           id: 1,
-          tasks: [{id:1, taskname:""}],
+          tasks: [{ id: 1, taskname: "" }],
           noOFTasks: 0,
           colummsTitle: "",
         },
@@ -42,9 +43,23 @@ export default {
       };
       const newcol = this.columms.filter(colbyid);
       this.columms = newcol;
-
-   
     },
+
+    taskDelete(id, colId) {
+      const taskbyid = (task) => {
+        return task.id !== id;
+      };
+
+      const findfunc = (col) => {
+        return col.id == colId
+      };
+      const findCol = this.columms.find(findfunc);
+
+      const filteredTasks = findCol.tasks.filter(taskbyid);
+
+      return (findCol.tasks = filteredTasks);
+    },
+
   },
 };
 </script>

@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="cards">
-      <taskCards v-for="ta in data.tasks" :details="ta" />
+      <taskCards v-for="ta in data.tasks" :details="ta" @deleteTask="passDelete" />
     </div>
     <div class="outer-task">
       <div class="tasks">
@@ -55,6 +55,10 @@ export default {
       const taskid = this.data.tasks.length + 1;
       this.data.tasks.push({id: taskid, taskname:""})
     },
+    passDelete(id){
+      const colId = this.data.id
+     this.$emit("passDelete", id, colId) 
+    }
   },
 };
 </script>
