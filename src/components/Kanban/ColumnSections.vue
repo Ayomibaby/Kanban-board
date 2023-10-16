@@ -3,7 +3,7 @@
     <div>
       <div class="title">
         <div class="title-identity">
-          <h2>{{ data.noOFTasks }}</h2>
+          <h4>{{ data.noOFTasks }}</h4>
           <input type="text" class="name-input" placeholder="Name" />
         </div>
         <div class="delete" @click="deleteColumn">
